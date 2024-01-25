@@ -3,7 +3,7 @@ import React from "react";
 const RestaurantCard = ({ restaurant }) => {
   return (
     <div className=" w-72 cursor-pointer shadow-2xl hover:shadow-md p-2">
-      <div className="  h-44 ">
+      <div className=" h-44 ">
         <img
           className="h-full w-full object-cover rounded-lg"
           src={

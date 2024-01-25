@@ -4,11 +4,14 @@ import { MdOutlineLocalOffer } from "react-icons/md";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa6";
 import { LuShoppingCart } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="flex justify-around sticky top-0 bg-white z-50 p-4 shadow-lg ">
-      <img src="/swiggy.svg" alt="logo" />
+      <Link to="/">
+        <img src="/swiggy.svg" alt="logo" />
+      </Link>
 
       <ul className="flex list-none gap-14 ">
         <li className=" flex items-center gap-2 cursor-pointer">

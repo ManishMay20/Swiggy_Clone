@@ -14,9 +14,10 @@ const Banner = () => {
         {bannerData?.header?.title}
       </h1>
       <div className="flex overflow-x-hidden">
-        {bannerCardData.map((card) => (
-          <BannerCard key={card.id} data={card} />
-        ))}
+        {bannerCardData &&
+          bannerCardData.map((card) => (
+            <BannerCard key={card.id} data={card} />
+          ))}
       </div>
     </div>
   );
