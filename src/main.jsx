@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Body from "./components/Body.jsx";
 import Search from "./components/Search/Search.jsx";
 import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu.jsx";
+import Collections from "./components/Restaurants/Collections.jsx";
 
 const appRouter = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/collections/:id",
+        element: <Collections />,
       },
 
       {

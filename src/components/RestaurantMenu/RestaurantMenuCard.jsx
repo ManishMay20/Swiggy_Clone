@@ -6,8 +6,10 @@ const RestaurantMenuCard = ({ items }) => {
   const foodType = data?.itemAttribute?.vegClassifier;
   const isBestseller = data?.isBestseller;
   if (!data) return;
+  const price = data?.price ? data?.price : data?.defaultPrice;
+  console.log(price);
   return (
-    <div className="flex justify-between pb-10 border-b-2 p-2 my-6">
+    <div className="flex justify-between pb-10 border-b-2 p-2 my-3">
       <div>
         <div className="flex gap-3 items-end">
           {foodType === "VEG" ? (
@@ -22,8 +24,10 @@ const RestaurantMenuCard = ({ items }) => {
             </div>
           )}
         </div>
-        <h2 className="font-bold text-lg mt-2">{data?.name}</h2>
-        <p>₹ {data?.price / 100}</p>
+        <h2 className="font-medium text-gray-700 text-base mt-2">
+          {data?.name}
+        </h2>
+        <p className="font-medium text-gray-700 text-base">₹ {price / 100}</p>
       </div>
       <div className="h-28 w-32 relative">
         {data?.imageId && (
