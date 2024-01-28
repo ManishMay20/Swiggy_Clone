@@ -16,7 +16,6 @@ const Banner = () => {
 
   if (!bannerCardData) return;
 
-  console.log(bannerCardData);
   return (
     <div className="border-b-2 pb-4">
       <div className="flex justify-between items-center">

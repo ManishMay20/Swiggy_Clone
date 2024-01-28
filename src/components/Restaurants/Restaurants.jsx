@@ -10,9 +10,8 @@ const Restaurants = () => {
 
   const restaurants = useSelector((store) => store.restaurants.topRestaurants);
 
-  if (restaurants[0]?.length === 0) return;
+  if (restaurants?.length === 0) return;
 
-  console.log(restaurants);
   return (
     <div className="py-4 border-b-2">
       <div className="flex justify-between items-center">

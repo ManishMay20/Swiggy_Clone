@@ -15,14 +15,22 @@ import ShimmerUI from "./Shimmers/ShimmerUI";
 const Body = () => {
   const [apiData, setApiData] = useState(null);
   const dispatch = useDispatch();
-  const resSlic = useSelector((store) => store.restaurants.topRestaurants);
+  const topRestaurants = useSelector(
+    (store) => store.restaurants.topRestaurants
+  );
+  const onlineRestaurants = useSelector(
+    (store) => store.restaurants.onlineRestaurants
+  );
+  const banner = useSelector((store) => store.restaurants.banner);
+
+  const data = topRestaurants && onlineRestaurants && banner;
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    if (resSlic.length !== 0) return;
+    if (banner.length !== 0) return;
     try {
       const response = await fetch(API_URL);
       if (!response.ok) {
@@ -69,8 +77,7 @@ const Body = () => {
     }
   };
 
-  // return <ShimmerUI />;
-  return resSlic.length === 0 ? (
+  return !data ? (
     <ShimmerUI />
   ) : (
     <div>

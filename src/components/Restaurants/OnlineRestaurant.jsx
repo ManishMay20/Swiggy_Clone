@@ -5,16 +5,6 @@ import { useSelector } from "react-redux";
 import ShimmerCard from "../Shimmers/ShimmerCard";
 
 const OnlineRestaurant = () => {
-  // const apiInfo = useData();
-  // if (!apiInfo) return null;
-  // console.log(apiInfo);
-  // const restaurantType = apiInfo.data.cards[3].card.card;
-  // const restaurants =
-  //   apiInfo?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
-  //     ?.restaurants;
-  // console.log(restaurants);
-  // if (!restaurants) return null;
-
   const restaurants = useSelector(
     (store) => store.restaurants.onlineRestaurants
   );

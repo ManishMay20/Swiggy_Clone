@@ -14,10 +14,10 @@ const Header = () => {
       </Link>
 
       <ul className="flex list-none gap-14 ">
-        <li className=" flex items-center gap-2 cursor-pointer">
+        <Link to="/search" className=" flex items-center gap-2 cursor-pointer">
           <FiSearch />
           Search
-        </li>
+        </Link>
         <li className=" flex items-center gap-2 cursor-pointer">
           <MdOutlineLocalOffer /> Offer
         </li>
