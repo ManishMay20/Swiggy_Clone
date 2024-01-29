@@ -53,7 +53,7 @@ const RestaurantMenu = () => {
         </div>
         <div className="flex flex-col items-center border border-gray-200 hover:border-gray-300 rounded justify-evenly p-2 cursor-pointer">
           <div className="flex items-center gap-1 pb-2 border-b w-full justify-center">
-            <FcRating />
+            <img className="h-5" src="/images/rating.png" />
             <span className="font-bold">{restaurantInfo?.avgRating}</span>
           </div>
 

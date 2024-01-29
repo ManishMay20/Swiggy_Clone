@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IMG_URL } from "../../constans";
+import { useDispatch, useSelector } from "react-redux";
+import { addItems, incrementItemCount } from "../../ReduxStore/cartSlice";
+import AddItemsBtn from "../Buttons/AddItemsBtn";
 
-const RestaurantMenuCard = ({ items }) => {
-  const data = items?.card?.info;
+const RestaurantMenuCard = ({ data }) => {
+  const [itemCount, setItemCount] = useState(0);
+  // const data = items?.card?.info;
   const foodType = data?.itemAttribute?.vegClassifier;
   const isBestseller = data?.isBestseller;
+  const dispatch = useDispatch();
   if (!data) return;
   const price = data?.price ? data?.price : data?.defaultPrice;
-  console.log(price);
+
+  const cartItem = useSelector((store) => store.cart.items);
+
+  const handleClick = () => {
+    console.log(cartItem[data?.id]);
+    if (cartItem[data?.id] === undefined) {
+      dispatch(addItems(data));
+      setItemCount(1);
+    } else {
+      dispatch(incrementItemCount(data?.id));
+      setItemCount(cartItem[data?.id].count);
+    }
+  };
+  useEffect(() => {
+    if (data && cartItem[data.id]) {
+      setItemCount(cartItem[data.id].count);
+    }
+  }, [cartItem, data, setItemCount]);
+
   return (
     <div className="flex justify-between pb-10 border-b-2 p-2 my-3">
       <div>
@@ -37,8 +60,16 @@ const RestaurantMenuCard = ({ items }) => {
             alt="items_image"
           />
         )}
-        <button className="bg-white text-xs font-bold px-6 py-2 rounded shadow-sm hover:shadow-lg absolute text-green-400 cursor-pointer border -bottom-2 left-1/2 transform -translate-x-1/2">
-          ADD
+        <button className="bg-white text-xs font-bold w-4/5 py-2 rounded shadow-sm hover:shadow-lg absolute text-green-400 cursor-pointer border -bottom-2 left-1/2 transform -translate-x-1/2">
+          {itemCount == 0 ? (
+            <div onClick={handleClick}>ADD</div>
+          ) : (
+            <AddItemsBtn
+              itemCount={itemCount}
+              setItemCount={setItemCount}
+              data={data}
+            />
+          )}
         </button>
       </div>
     </div>

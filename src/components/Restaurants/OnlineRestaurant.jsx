@@ -16,7 +16,7 @@ const OnlineRestaurant = () => {
         {/* {restaurantType?.header?.title} */}
         Restaurants with online food delivery in Indore
       </h1>
-      <div className="flex flex-wrap gap-5">
+      <div className="flex flex-wrap gap-4">
         {restaurants &&
           restaurants[0]?.map((restaurant) => (
             <Link

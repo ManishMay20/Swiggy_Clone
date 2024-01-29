@@ -21,7 +21,7 @@ const Restaurants = () => {
         <LeftRightArrowBtn containerRef={containerRef} />
       </div>
 
-      <div className="flex overflow-hidden gap-5" ref={containerRef}>
+      <div className="flex overflow-hidden gap-4" ref={containerRef}>
         {restaurants[0]?.map((restaurant) => (
           <Link
             to={"/restaurants/" + restaurant.info.id}

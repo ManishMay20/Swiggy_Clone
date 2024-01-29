@@ -22,7 +22,10 @@ const RestaurantMenuCategory = ({ restaurantCategories }) => {
       </div>
       {isShow &&
         items?.map((item) => (
-          <RestaurantMenuCard items={item} key={item?.card?.info?.id} />
+          <RestaurantMenuCard
+            data={item?.card?.info}
+            key={item?.card?.info?.id}
+          />
         ))}
     </div>
   );

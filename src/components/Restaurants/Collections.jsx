@@ -37,7 +37,7 @@ const Collections = () => {
       <h1 className="text-2xl font-semibold text-gray-800 ">
         Restaurants to explore
       </h1>
-      <div className="flex flex-wrap gap-5">
+      <div className="flex flex-wrap gap-4">
         {collections.map((data, i) => {
           return data?.card?.card?.info ? (
             <Link
