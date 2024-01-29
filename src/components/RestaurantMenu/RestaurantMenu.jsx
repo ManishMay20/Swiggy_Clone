@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { FcRating } from "react-icons/fc";
 import RestaurantMenuCategory from "./RestaurantMenuCategory";
 import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
+import { MENU_API_URL } from "../../constans";
 
 const RestaurantMenu = () => {
   const [menuData, setMenuData] = useState();
@@ -13,10 +14,7 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchRestaurantMenu = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.7195687&lng=75.8577258&restaurantId=" +
-        id
-    );
+    const data = await fetch(MENU_API_URL + id);
     const json = await data.json();
     console.log(json);
     setMenuData(json);

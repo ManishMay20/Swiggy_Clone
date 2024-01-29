@@ -36,7 +36,6 @@ const Search = () => {
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
   };
-  console.log(searchData);
 
   return (
     <div className="w-2/3 m-auto mt-10">

@@ -1,4 +1,5 @@
 import React from "react";
+import { IMG_URL } from "../../constans";
 
 const BannerCard = ({ data }) => {
   return (
@@ -7,10 +8,7 @@ const BannerCard = ({ data }) => {
         className=" mx-3"
         width="144px"
         height="180px"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/" +
-          data.imageId
-        }
+        src={IMG_URL + data.imageId}
       />
     </div>
   );

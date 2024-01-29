@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "../Shimmers/ShimmerUI";
+import { COLLECTION_API_URL } from "../../constans";
 
 const Collections = () => {
   const { id } = useParams();
@@ -9,9 +10,7 @@ const Collections = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7195687&lng=75.8577258&collection=${id}&tags=layout_CCS_Poha&sortBy=&filters=&type=rcv2&offset=0&page_type=null`
-      );
+      const response = await fetch(COLLECTION_API_URL + id);
       const json = await response.json();
       setCollections(json?.data?.cards);
     } catch (e) {

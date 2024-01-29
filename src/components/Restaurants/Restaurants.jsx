@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ShimmerUI from "../Shimmers/ShimmerUI";
 import LeftRightArrowBtn from "../Buttons/LeftRightArrowBtn";
 
 const Restaurants = () => {
