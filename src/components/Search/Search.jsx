@@ -6,26 +6,48 @@ import { Link, useSearchParams } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import SearchRes from "./SearchRes";
 import { SEARCH_SUGGESTIONS_API_URL } from "../../constans";
+import { useDispatch, useSelector } from "react-redux";
+import { cacheResults } from "../../ReduxStore/searchSlice";
 
 const Search = () => {
   const [searchText, setSearchText] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [searchParams] = useSearchParams();
-  const [showResDetail, setShowResDetail] = useState(false);
   let query = searchParams.get("query");
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(SEARCH_SUGGESTIONS_API_URL + searchText);
-        const json = await response.json();
-        setSearchData(json?.data?.suggestions);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const [showResDetail, setShowResDetail] = useState(false);
 
-    fetchData();
+  const searchCache = useSelector((store) => store.search);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // debouncing reducing number of api calls
+    const timer = setTimeout(() => {
+      if (searchCache[searchText]) {
+        setSearchData(searchCache[searchText]);
+      } else {
+        fetchData();
+      }
+    }, 200);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [searchText]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(SEARCH_SUGGESTIONS_API_URL + searchText);
+      const json = await response.json();
+      setSearchData(json?.data?.suggestions);
+      // caching
+      dispatch(
+        cacheResults({
+          [searchText]: json?.data?.suggestions,
+        })
+      );
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
     query && setSearchText(query);

@@ -11,11 +11,13 @@ import Cart from "./components/Cart/Cart.jsx";
 import About from "./components/About.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Auth from "./components/Auth/Auth.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

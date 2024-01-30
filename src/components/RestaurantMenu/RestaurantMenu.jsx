@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { FcRating } from "react-icons/fc";
 import RestaurantMenuCategory from "./RestaurantMenuCategory";
 import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 import { MENU_API_URL } from "../../constans";

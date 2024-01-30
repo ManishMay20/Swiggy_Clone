@@ -15,6 +15,7 @@ const SearchRes = () => {
   useEffect(() => {
     fetchData();
   }, [query]);
+
   const fetchData = async () => {
     let response;
     if (selectedPLTab === "DISH") {
@@ -39,8 +40,6 @@ const SearchRes = () => {
   if (!resInfo && !dishInfo) return;
 
   console.log(resInfo);
-
-  // let restaurants = resInfo[1]?.card?.card?.restaurants;
 
   return selectedPLTab === "DISH" ? (
     <SearchDish dishInfo={dishInfo} />
