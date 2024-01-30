@@ -17,25 +17,30 @@ const SearchRes = () => {
   }, [query]);
   const fetchData = async () => {
     let response;
-    if (selectedPLTab === "RESTAURANT") {
-      response = await fetch(SEARCH_API_URL + query);
-    } else if (selectedPLTab === "DISH") {
-      response = await fetch(SEARCH_API_URL + query);
+    if (selectedPLTab === "DISH") {
+      response = await fetch(SEARCH_API_URL + query + "&selectedPLTab=DISH");
+    } else {
+      response = await fetch(
+        SEARCH_API_URL + query + "&selectedPLTab=RESTAURANT"
+      );
     }
 
     const json = await response.json();
+    console.log(json);
 
-    if (selectedPLTab === "RESTAURANT") {
+    if (selectedPLTab === "DISH") {
+      setDishInfo(json?.data?.cards[0]?.groupedCard?.cardGroupMap?.DISH?.cards);
+    } else {
       setResInfo(
-        json?.data?.cards[1]?.groupedCard?.cardGroupMap?.RESTAURANT?.cards
+        json?.data?.cards[0]?.groupedCard?.cardGroupMap?.RESTAURANT?.cards
       );
-    } else if (selectedPLTab === "DISH") {
-      setDishInfo(json?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards);
     }
   };
   if (!resInfo && !dishInfo) return;
 
-  let restaurants = resInfo[1]?.card?.card?.restaurants;
+  console.log(resInfo);
+
+  // let restaurants = resInfo[1]?.card?.card?.restaurants;
 
   return selectedPLTab === "DISH" ? (
     <SearchDish dishInfo={dishInfo} />
@@ -43,7 +48,7 @@ const SearchRes = () => {
     <div className="w-full border bg-gray-50 rounded-lg">
       <div className="w-full p-2">
         <Link
-          to={`/restaurants/${resInfo[0]?.card?.card.info?.id}`}
+          to={`/restaurants/${resInfo[0]?.card?.card?.info?.id}`}
           key={resInfo[0]?.card?.card.info?.id}
         >
           <SearchResCard
@@ -54,13 +59,13 @@ const SearchRes = () => {
       </div>
       <h1 className="my-4 mt-10 px-3 font-semibold">More results like this</h1>
       <div className="w-full p-2">
-        {restaurants &&
-          restaurants?.map((restaurant) => (
+        {resInfo &&
+          resInfo?.map((item) => (
             <Link
-              to={`/restaurants/${restaurant?.info?.id}`}
-              key={restaurant?.info?.id}
+              to={`/restaurants/${item?.card?.card?.info?.id}`}
+              key={item?.card?.card?.info?.id}
             >
-              <SearchResCard restaurant={restaurant} />
+              <SearchResCard restaurant={item?.card?.card} />
             </Link>
           ))}
       </div>
