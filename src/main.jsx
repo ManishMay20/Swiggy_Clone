@@ -9,6 +9,8 @@ import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu.jsx";
 import Collections from "./components/Restaurants/Collections.jsx";
 import Cart from "./components/Cart/Cart.jsx";
 import About from "./components/About.jsx";
+import Contact from "./components/Contact/Contact.jsx";
+import Auth from "./components/Auth/Auth.jsx";
 
 const appRouter = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/auth",
+        element: <Auth />,
       },
     ],
   },

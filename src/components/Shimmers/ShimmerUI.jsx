@@ -11,7 +11,7 @@ const ShimmerUI = () => {
             <BannerShimmer key={i} />
           ))}
       </div>
-      <div className=" flex flex-wrap mt-10 gap-5">
+      <div className=" flex flex-wrap mt-10 gap-4">
         {Array(10)
           .fill()
           .map((e, i) => (

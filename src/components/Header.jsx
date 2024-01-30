@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <div className="flex justify-around sticky top-0 bg-white z-50 p-4 shadow-lg">
-      <Link to="/">
+      <Link to="/" onClick={() => handleLinkClick("")}>
         <img src="/swiggy.svg" alt="logo" />
       </Link>
 
@@ -47,15 +47,17 @@ const Header = () => {
         >
           <MdRoundaboutRight size={20} /> About
         </Link>
-        <li
+        <Link
+          to="/contact"
           onClick={() => handleLinkClick("help")}
           className={`flex items-center gap-2 cursor-pointer ${
             activeLink === "help" ? "text-orange-500" : ""
           }`}
         >
           <LuContact2 size={20} /> Contact
-        </li>
-        <li
+        </Link>
+        <Link
+          to="/auth"
           onClick={() => handleLinkClick("login")}
           className={`flex items-center gap-2 cursor-pointer ${
             activeLink === "login" ? "text-orange-500" : ""
@@ -63,7 +65,7 @@ const Header = () => {
         >
           <FaRegUser />
           Login
-        </li>
+        </Link>
 
         <Link
           onClick={() => handleLinkClick("cart")}

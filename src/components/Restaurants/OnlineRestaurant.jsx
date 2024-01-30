@@ -2,7 +2,6 @@ import React from "react";
 import RestaurantCard from "./RestaurantCard";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ShimmerCard from "../Shimmers/ShimmerCard";
 
 const OnlineRestaurant = () => {
   const restaurants = useSelector(

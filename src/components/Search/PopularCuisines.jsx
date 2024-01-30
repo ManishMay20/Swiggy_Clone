@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IMG_URL } from "../../constans";
+import { IMG_URL, SEARCH_LANDING_API_URL } from "../../constans";
 import { Link } from "react-router-dom";
 
 const PopularCuisines = () => {
@@ -7,15 +7,13 @@ const PopularCuisines = () => {
   const extractCuisinesName = (url) => {
     const regex = /query=([a-zA-Z]+)/;
     const match = url.match(regex);
-    return match && match[1]; // Returns the collection_id value or null if not found
+    return match && match[1];
   };
   useEffect(() => {
     fetchData();
   }, []);
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/landing/PRE_SEARCH?lat=22.7195687&lng=75.8577258"
-    );
+    const data = await fetch(SEARCH_LANDING_API_URL);
     const json = await data.json();
     setCuisines(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info

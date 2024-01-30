@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import SearchCard from "./SearchCard";
 import { FiSearch } from "react-icons/fi";
 import PopularCuisines from "./PopularCuisines";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
+import SearchRes from "./SearchRes";
+import { SEARCH_SUGGESTIONS_API_URL } from "../../constans";
 
 const Search = () => {
   const [searchText, setSearchText] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [searchParams] = useSearchParams();
+  const [showResDetail, setShowResDetail] = useState(false);
   let query = searchParams.get("query");
   useEffect(() => {
-    // Define your API call function
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://www.swiggy.com/dapi/restaurants/search/suggest?lat=22.7195687&lng=75.8577258&str=${searchText}&trackingId=undefined`
-        );
+        const response = await fetch(SEARCH_SUGGESTIONS_API_URL + searchText);
         const json = await response.json();
         setSearchData(json?.data?.suggestions);
       } catch (error) {
@@ -24,9 +24,7 @@ const Search = () => {
       }
     };
 
-    // if (searchText !== "") {
     fetchData();
-    // }
   }, [searchText]);
 
   useEffect(() => {
@@ -38,8 +36,8 @@ const Search = () => {
   };
 
   return (
-    <div className="w-2/3 m-auto mt-10">
-      <div className="relative">
+    <div className="w-2/3 m-auto mt-10 relative">
+      <div className="sticky top-20 py-3 bg-white z-10">
         <span className="absolute right-3 translate-y-1/2 cursor-pointer ">
           {!searchText ? (
             <FiSearch size={25} className="text-gray-600" />
@@ -57,18 +55,23 @@ const Search = () => {
           type="text"
           value={searchText}
           onChange={handleInputChange}
+          onClick={() => setShowResDetail(false)}
           placeholder="Search for restaurants and food"
         />
       </div>
       {/* Render response data from API */}
-
-      {!searchData ? (
-        <PopularCuisines />
-      ) : (
+      {showResDetail && <SearchRes />}
+      {!searchData && <PopularCuisines />}{" "}
+      {!showResDetail &&
         searchData?.map((restaurant, i) => (
-          <SearchCard restaurant={restaurant} key={restaurant?.cloudinaryId} />
-        ))
-      )}
+          <Link
+            onClick={() => setShowResDetail(true)}
+            to={`/search?query=${restaurant?.text}&selectedPLTab=${restaurant.type}`}
+            key={`${restaurant?.cloudinaryId}-${i}`}
+          >
+            <SearchCard restaurant={restaurant} />
+          </Link>
+        ))}
     </div>
   );
 };

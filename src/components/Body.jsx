@@ -77,7 +77,7 @@ const Body = () => {
     }
   };
 
-  return !data ? (
+  return data.length === 0 ? (
     <ShimmerUI />
   ) : (
     <div>

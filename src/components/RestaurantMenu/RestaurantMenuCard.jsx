@@ -6,17 +6,14 @@ import AddItemsBtn from "../Buttons/AddItemsBtn";
 
 const RestaurantMenuCard = ({ data }) => {
   const [itemCount, setItemCount] = useState(0);
-  // const data = items?.card?.info;
   const foodType = data?.itemAttribute?.vegClassifier;
   const isBestseller = data?.isBestseller;
   const dispatch = useDispatch();
+  const cartItem = useSelector((store) => store.cart.items);
   if (!data) return;
   const price = data?.price ? data?.price : data?.defaultPrice;
 
-  const cartItem = useSelector((store) => store.cart.items);
-
   const handleClick = () => {
-    console.log(cartItem[data?.id]);
     if (cartItem[data?.id] === undefined) {
       dispatch(addItems(data));
       setItemCount(1);
@@ -30,6 +27,9 @@ const RestaurantMenuCard = ({ data }) => {
       setItemCount(cartItem[data.id].count);
     }
   }, [cartItem, data, setItemCount]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="flex justify-between pb-10 border-b-2 p-2 my-3">

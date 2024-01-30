@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import BannerCard from "./BannerCard";
 import { useSelector } from "react-redux";
-import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import LeftRightArrowBtn from "../Buttons/LeftRightArrowBtn";
 
 const extractCollectionId = (url) => {
   const regex = /collection_id=(\d+)/;
   const match = url.match(regex);
-  return match && match[1]; // Returns the collection_id value or null if not found
+  return match && match[1];
 };
 const Banner = () => {
   const bannerCardData = useSelector((store) => store.restaurants.banner);
