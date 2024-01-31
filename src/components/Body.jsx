@@ -28,7 +28,7 @@ const Body = () => {
   const data = topRestaurants && onlineRestaurants && banner;
 
   useEffect(() => {
-    const timer = setTimeout(() => setAvailable(), 3000);
+    const timer = setTimeout(() => setAvailable(), 4000);
 
     fetchData();
     return () => {
@@ -36,7 +36,7 @@ const Body = () => {
     };
   }, []);
   const setAvailable = () => {
-    if (banner.length === 0) {
+    if (apiData?.length === 0) {
       setIsAvailable(false);
     } else {
       setIsAvailable(true);
