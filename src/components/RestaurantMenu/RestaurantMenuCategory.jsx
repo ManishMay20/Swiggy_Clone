@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import RestaurantMenuCard from "./RestaurantMenuCard";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 
 const RestaurantMenuCategory = ({ restaurantCategories }) => {
   const [isShow, setIsShow] = useState(true);

@@ -11,7 +11,7 @@ const SearchDishCard = ({ item }) => {
 
   if (!restaurant || !info) return;
   return (
-    <div className="p-2  w-5/12 bg-white rounded-xl">
+    <div className="p-2 w-3/4 sm:w-5/12 bg-white rounded-xl">
       <Link to={`/restaurants/${restaurant?.id}`} key={restaurant?.id}>
         <div className="flex justify-between items-center">
           <div className=" text-gray-600 p-2 cursor-pointer">

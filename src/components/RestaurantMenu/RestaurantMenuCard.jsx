@@ -3,10 +3,11 @@ import { IMG_URL } from "../../constans";
 import { useDispatch, useSelector } from "react-redux";
 import { addItems, incrementItemCount } from "../../ReduxStore/cartSlice";
 import AddItemsBtn from "../Buttons/AddItemsBtn";
+import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 
 const RestaurantMenuCard = ({ data }) => {
   const [itemCount, setItemCount] = useState(0);
-  const foodType = data?.itemAttribute?.vegClassifier;
+  const foodType = data?.itemAttribute?.vegClassifier || data?.isVeg;
   const isBestseller = data?.isBestseller;
   const dispatch = useDispatch();
   const cartItem = useSelector((store) => store.cart.items);
@@ -31,13 +32,15 @@ const RestaurantMenuCard = ({ data }) => {
     window.scrollTo(0, 0);
   }, []);
 
+  if (!data) return;
   return (
-    <div className="flex justify-between pb-10 border-b-2 p-2 my-3">
+    <div className="flex justify-between pb-5 md:pb-10 border-b-2 p-2 my-3">
       <div>
         <div className="flex gap-3 items-end">
-          {foodType === "VEG" ? (
+          {(foodType === "VEG" || foodType == 1) && (
             <img className="w-5" src={`/images/VEG.png`} />
-          ) : (
+          )}
+          {(foodType === "NONVEG" || foodType === undefined) && (
             <img className="w-5" src={`/images/NONVEG.png`} />
           )}
           {isBestseller && (
@@ -47,12 +50,14 @@ const RestaurantMenuCard = ({ data }) => {
             </div>
           )}
         </div>
-        <h2 className="font-medium text-gray-700 text-base mt-2">
+        <h2 className="font-medium text-gray-700 text-sm sm:text-base mt-2">
           {data?.name}
         </h2>
-        <p className="font-medium text-gray-700 text-base">₹ {price / 100}</p>
+        <p className="font-medium text-gray-700 text-sm sm:text-base">
+          ₹ {price / 100}
+        </p>
       </div>
-      <div className="h-28 w-32 relative">
+      <div className="min-h-28 max-h-28 min-w-32 max-w-32 relative pl-2">
         {data?.imageId && (
           <img
             className="w-full h-full rounded-lg object-cover"

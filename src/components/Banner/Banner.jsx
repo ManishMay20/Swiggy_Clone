@@ -16,13 +16,15 @@ const Banner = () => {
   if (!bannerCardData) return;
 
   return (
-    <div className="border-b-2 pb-4">
+    <div className="border-b-2 pb-2 sm:pb-4">
       <div className="flex justify-between items-center">
-        <h1 className="font-semibold text-2xl mt-5">
+        <h1 className="font-semibold text-lg sm:text-xl md:text-2xl mt-3 sm:mt-5">
           {/* {bannerData?.header?.title} */}
           What's on your mind?
         </h1>
-        <LeftRightArrowBtn containerRef={containerRef} />
+        <div className="">
+          <LeftRightArrowBtn containerRef={containerRef} />
+        </div>
       </div>
       <div className="flex overflow-x-hidden" ref={containerRef}>
         {bannerCardData &&

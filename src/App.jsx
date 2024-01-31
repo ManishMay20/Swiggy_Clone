@@ -9,7 +9,7 @@ function App() {
   return (
     <Provider store={appStore}>
       <Header />
-      <div className="w-4/5 m-auto min-h-screen">
+      <div className="w-full p-1 sm:w-11/12 md:w-4/5 m-auto min-h-screen">
         <Outlet />
       </div>
       <Footer />

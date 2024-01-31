@@ -22,12 +22,36 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-around sticky top-0 bg-white z-50 p-4 shadow-lg">
-      <Link to="/" onClick={() => handleLinkClick("")}>
-        <img src="/swiggy.svg" alt="logo" />
-      </Link>
+    <div className="flex justify-between sm:justify-around sticky top-0 bg-white z-50 p-4 shadow-lg">
+      <div className="w-4 sm:w-8">
+        <Link to="/" onClick={() => handleLinkClick("")}>
+          <img src="/swiggy.svg" alt="logo" />
+        </Link>
+      </div>
 
-      <ul className="flex list-none gap-10">
+      <div className="flex  gap-3 sm:hidden">
+        <Link
+          onClick={() => handleLinkClick("search")}
+          to="/search"
+          className={`flex items-center gap-2 cursor-pointer ${
+            activeLink === "search" ? "text-orange-500" : ""
+          }`}
+        >
+          <FiSearch size={20} />
+        </Link>
+        <Link
+          onClick={() => handleLinkClick("cart")}
+          to="/cart"
+          className={`flex items-center  cursor-pointer ${
+            activeLink === "cart" ? "text-orange-500" : ""
+          }`}
+        >
+          <LuShoppingCart />
+          {itemCount}
+        </Link>
+      </div>
+
+      <ul className="sm:flex list-none hidden sm:visible sm:gap-2 md:gap-5 lg:gap-10">
         <Link
           onClick={() => handleLinkClick("search")}
           to="/search"

@@ -12,9 +12,9 @@ const Restaurants = () => {
   if (restaurants?.length === 0) return;
 
   return (
-    <div className="py-4 border-b-2">
+    <div className="py-2 md:py-4 border-b-2">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-semibold my-4">
+        <h1 className=" text-lg sm:text-xl md:text-2xl font-semibold my-2 sm:my-4">
           {restaurants[0] ? "Top restaurant chains in Indore" : ""}
         </h1>
         <LeftRightArrowBtn containerRef={containerRef} />
@@ -26,7 +26,9 @@ const Restaurants = () => {
             to={"/restaurants/" + restaurant.info.id}
             key={restaurant.info.id}
           >
-            <RestaurantCard restaurant={restaurant} />
+            <div className=" w-72">
+              <RestaurantCard restaurant={restaurant} />
+            </div>
           </Link>
         ))}
       </div>

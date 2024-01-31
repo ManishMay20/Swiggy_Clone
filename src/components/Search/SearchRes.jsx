@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import SearchResCard from "./SearchResCard";
 import SearchDish from "./SearchDish";
 import { SEARCH_API_URL } from "../../constans";
+import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 
 const SearchRes = () => {
   const [searchParams] = useSearchParams();
@@ -27,7 +28,6 @@ const SearchRes = () => {
     }
 
     const json = await response.json();
-    console.log(json);
 
     if (selectedPLTab === "DISH") {
       setDishInfo(json?.data?.cards[0]?.groupedCard?.cardGroupMap?.DISH?.cards);
@@ -37,10 +37,8 @@ const SearchRes = () => {
       );
     }
   };
-  if (!resInfo && !dishInfo) return;
-
-  console.log(resInfo);
-
+  if (resInfo.length == 0 && dishInfo.length == 0)
+    return <RestaurantMenuShimmer />;
   return selectedPLTab === "DISH" ? (
     <SearchDish dishInfo={dishInfo} />
   ) : (

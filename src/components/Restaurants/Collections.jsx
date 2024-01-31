@@ -26,17 +26,17 @@ const Collections = () => {
   const resInfo = collections[0]?.card?.card;
 
   return (
-    <div className="mt-14">
-      <div className="my-6">
-        <h1 className="text-4xl font-semibold text-gray-800 ">
+    <div className="mt-3 p-2 md:mt-8 lg:mt-12">
+      <div className="my-3 md:my-5 lg:my-6">
+        <h1 className="text-xl md:text-2xl lg:text-4xl font-semibold text-gray-800 ">
           {resInfo?.title}
         </h1>
         <p className=" text-gray-700">{resInfo?.description}</p>
       </div>
-      <h1 className="text-2xl font-semibold text-gray-800 ">
+      <h1 className="text-lg sm:text-xl  lg:text-2xl font-semibold text-gray-800 ">
         Restaurants to explore
       </h1>
-      <div className="flex flex-wrap gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {collections.map((data, i) => {
           return data?.card?.card?.info ? (
             <Link

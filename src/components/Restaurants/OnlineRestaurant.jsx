@@ -10,12 +10,12 @@ const OnlineRestaurant = () => {
 
   if (!restaurants) return;
   return (
-    <div className="py-4">
-      <h1 className="text-2xl font-semibold mb-4">
+    <div className="py-2 sm:py-4">
+      <h1 className=" text-lg sm:text-xl md:text-2xl font-semibold mb-4">
         {/* {restaurantType?.header?.title} */}
         Restaurants with online food delivery in Indore
       </h1>
-      <div className="flex flex-wrap gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {restaurants &&
           restaurants[0]?.map((restaurant) => (
             <Link

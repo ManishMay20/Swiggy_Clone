@@ -18,14 +18,13 @@ const RestaurantMenu = () => {
     setMenuData(json);
   };
 
-  if (!menuData) return;
+  if (!menuData) return <RestaurantMenuShimmer />;
   const restaurantInfo = menuData?.data?.cards[0]?.card?.card?.info;
   const restaurantCategories =
     menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
-  if (!restaurantCategories) return <RestaurantMenuShimmer />;
   return (
-    <div className="w-2/3 m-auto">
+    <div className=" md:w-4/5 lg:w-2/3 m-auto p-2">
       <div className="text-[10px] my-6">
         <Link to={"/"}>
           <span className="text-gray-500 cursor-pointer hover:text-gray-950">
