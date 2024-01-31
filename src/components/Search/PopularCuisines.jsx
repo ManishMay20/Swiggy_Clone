@@ -28,7 +28,7 @@ const PopularCuisines = () => {
             to={`/search?query=${extractCuisinesName(items?.entityId)}`}
             key={items?.id}
           >
-            <div className="min-h-20 min-w-20">
+            <div className="min-h-20 min-w-20 max-w-20">
               <img
                 className="h-full w-full object-cover"
                 src={IMG_URL + items.imageId}

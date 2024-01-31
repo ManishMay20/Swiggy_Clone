@@ -11,9 +11,11 @@ import {
 } from "../ReduxStore/restaurantsSlice";
 import { API_URL } from "../constans";
 import ShimmerUI from "./Shimmers/ShimmerUI";
+import Unserviceable from "./Unserviceable";
 
 const Body = () => {
   const [apiData, setApiData] = useState(null);
+  const [isAvailable, setIsAvailable] = useState(true);
   const dispatch = useDispatch();
   const topRestaurants = useSelector(
     (store) => store.restaurants.topRestaurants
@@ -26,8 +28,20 @@ const Body = () => {
   const data = topRestaurants && onlineRestaurants && banner;
 
   useEffect(() => {
+    const timer = setTimeout(() => setAvailable(), 3000);
+
     fetchData();
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
+  const setAvailable = () => {
+    if (banner.length === 0) {
+      setIsAvailable(false);
+    } else {
+      setIsAvailable(true);
+    }
+  };
 
   const fetchData = async () => {
     if (banner.length !== 0) return;
@@ -77,13 +91,18 @@ const Body = () => {
     }
   };
 
-  return data.length === 0 ? (
+  return data.length === 0 && isAvailable ? (
     <ShimmerUI />
   ) : (
     <div>
-      <Banner />
-      <Restaurants />
-      <OnlineRestaurant />
+      {!isAvailable && <Unserviceable />}
+      {isAvailable && (
+        <>
+          <Banner />
+          <Restaurants />
+          <OnlineRestaurant />
+        </>
+      )}
     </div>
   );
 };
