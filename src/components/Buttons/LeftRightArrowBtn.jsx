@@ -5,13 +5,13 @@ const LeftRightArrowBtn = ({ containerRef }) => {
   const handleScrollLeft = (e) => {
     const container = containerRef.current;
     if (container) {
-      container.scrollLeft -= 500;
+      container.scrollLeft -= 300;
     }
   };
   const handleScrollRight = (e) => {
     const container = containerRef.current;
     if (container) {
-      container.scrollLeft += 500;
+      container.scrollLeft += 300;
     }
   };
   return (
