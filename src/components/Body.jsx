@@ -76,8 +76,8 @@ const Body = () => {
   }
 
   const isAvailable =
-    topRestaurants.length !== 0 &&
-    onlineRestaurants.length !== 0 &&
+    topRestaurants.length !== 0 ||
+    onlineRestaurants.length !== 0 ||
     banner.length !== 0;
 
   return (

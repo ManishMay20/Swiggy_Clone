@@ -62,7 +62,7 @@ const SearchRes = () => {
         </Link>
       </div>
       <h1 className="my-4 mt-10 px-3 font-semibold">More results like this</h1>
-      <div className="w-full p-2">
+      <div className="w-full sm:p-2">
         {resInfo &&
           resInfo?.map((item) => (
             <Link

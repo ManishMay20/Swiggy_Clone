@@ -9,18 +9,18 @@ const SearchResCard = ({ restaurant, resCost }) => {
 
   restaurant = restaurant?.info;
   return (
-    <div className="flex cursor-pointer gap-3 items-center w-full m-3 p-2 border bg-white mx-1 ">
+    <div className="flex cursor-pointer gap-3 items-center w-full my-3 p-2 border bg-white mx-1 ">
       <div className=" w-24 h-[88px]">
         <img
-          className="h-full w-full object-cover rounded-lg"
+          className="h-full w-full min-w-fit object-cover rounded-lg"
           src={Image_url + restaurant?.cloudinaryImageId}
         />
       </div>
-      <div className="w-3/4">
-        <h1 className="text-base font-semibold text-gray-800">
+      <div className="w-2/3 sm:w-3/4">
+        <h1 className="text-base font-medium  sm:font-semibold text-gray-800">
           {restaurant?.name}
         </h1>
-        <div className="flex text-gray-700 items-center gap-1 text-sm font-medium">
+        <div className="flex text-gray-700 items-center gap-1 text-xs sm:text-sm font-medium">
           <div className="flex  ">
             <IoIosStar />
             <p className="pl-[2px]">{restaurant?.avgRating}</p>
