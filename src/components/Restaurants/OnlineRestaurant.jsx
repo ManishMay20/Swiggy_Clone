@@ -8,23 +8,24 @@ const OnlineRestaurant = () => {
     (store) => store.restaurants.onlineRestaurants
   );
 
-  if (!restaurants) return;
+  if (!restaurants || restaurants.length === 0) {
+    return null;
+  }
+
   return (
     <div className="py-2 sm:py-4">
-      <h1 className=" text-lg sm:text-xl md:text-2xl font-semibold mb-4">
-        {/* {restaurantType?.header?.title} */}
+      <h1 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4">
         Restaurants with online food delivery in Indore
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {restaurants &&
-          restaurants[0]?.map((restaurant) => (
-            <Link
-              to={"/restaurants/" + restaurant.info.id}
-              key={restaurant.info.id}
-            >
-              <RestaurantCard restaurant={restaurant} />
-            </Link>
-          ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+        {restaurants[0].map((restaurant) => (
+          <Link
+            to={"/restaurants/" + restaurant.info.id}
+            key={restaurant.info.id}
+          >
+            <RestaurantCard restaurant={restaurant} />
+          </Link>
+        ))}
       </div>
     </div>
   );

@@ -17,6 +17,10 @@ const SearchRes = () => {
     fetchData();
   }, [query]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const fetchData = async () => {
     let response;
     if (selectedPLTab === "DISH") {
@@ -37,8 +41,11 @@ const SearchRes = () => {
       );
     }
   };
-  if (resInfo.length == 0 && dishInfo.length == 0)
+
+  if ((!resInfo || !resInfo.length) && (!dishInfo || !dishInfo.length)) {
     return <RestaurantMenuShimmer />;
+  }
+
   return selectedPLTab === "DISH" ? (
     <SearchDish dishInfo={dishInfo} />
   ) : (

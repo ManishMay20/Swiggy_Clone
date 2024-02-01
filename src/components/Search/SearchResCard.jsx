@@ -5,8 +5,7 @@ const Image_url =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/";
 
 const SearchResCard = ({ restaurant, resCost }) => {
-  let costForTwo =
-    resCost !== undefined ? resCost : restaurant?.info?.costForTwo;
+  let costForTwo = restaurant?.info?.costForTwoMessage;
 
   restaurant = restaurant?.info;
   return (

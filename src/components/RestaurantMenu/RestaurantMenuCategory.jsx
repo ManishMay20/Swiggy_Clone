@@ -7,7 +7,7 @@ const RestaurantMenuCategory = ({ restaurantCategories }) => {
   const category = restaurantCategories?.card?.card;
   const items = category?.itemCards;
 
-  if (!items) return;
+  if (!items) return null;
   return (
     <div className="my-6 border-b-8">
       <div className="flex justify-between items-center">

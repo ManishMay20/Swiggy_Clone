@@ -30,7 +30,9 @@ const Banner = () => {
         {bannerCardData &&
           bannerCardData[0]?.map((card) => (
             <Link
-              to={`/collections/${extractCollectionId(card.entityId)}`}
+              to={`/collections/${
+                extractCollectionId(card.entityId) || card.entityId
+              }`}
               key={card.id}
             >
               <BannerCard data={card} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -12,6 +12,8 @@ import About from "./components/About.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Auth from "./components/Auth/Auth.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
+
+
 
 const appRouter = createBrowserRouter([
   {

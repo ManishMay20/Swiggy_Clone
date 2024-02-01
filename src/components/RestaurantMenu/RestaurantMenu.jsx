@@ -5,26 +5,50 @@ import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 import { MENU_API_URL } from "../../constans";
 
 const RestaurantMenu = () => {
-  const [menuData, setMenuData] = useState();
+  const [menuData, setMenuData] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
+    const fetchRestaurantMenu = async () => {
+      try {
+        const response = await fetch(MENU_API_URL + id);
+        if (!response.ok) {
+          throw new Error("Failed to fetch menu data");
+        }
+        const json = await response.json();
+        setMenuData(json);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     fetchRestaurantMenu();
+  }, [id]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
-  const fetchRestaurantMenu = async () => {
-    const data = await fetch(MENU_API_URL + id);
-    const json = await data.json();
-    setMenuData(json);
-  };
-
-  if (!menuData) return <RestaurantMenuShimmer />;
-  const restaurantInfo = menuData?.data?.cards[0]?.card?.card?.info;
-  const restaurantCategories =
-    menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+  if (!menuData) {
+    return <RestaurantMenuShimmer />;
+  }
+  let restaurantInfo;
+  let restaurantCategories;
+  {
+    for (let i = 0; i < menuData.data.cards.length; i++) {
+      if (menuData?.data?.cards[i]?.card?.card?.info) {
+        restaurantInfo = menuData?.data?.cards[0]?.card?.card?.info;
+      } else if (
+        menuData?.data?.cards[i]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+      ) {
+        restaurantCategories =
+          menuData?.data?.cards[i]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+      }
+    }
+  }
 
   return (
-    <div className=" md:w-4/5 lg:w-2/3 m-auto p-2">
+    <div className="md:w-4/5 lg:w-2/3 m-auto p-2">
       <div className="text-[10px] my-6">
         <Link to={"/"}>
           <span className="text-gray-500 cursor-pointer hover:text-gray-950">
@@ -36,7 +60,7 @@ const RestaurantMenu = () => {
         </span>
         <span className="text-gray-900">{restaurantInfo?.name}</span>
       </div>
-      <div className="flex justify-between mt-10 border-b-2 pb-6 ">
+      <div className="flex justify-between mt-10 border-b-2 pb-6">
         <div className="">
           <h2 className="text-lg font-semibold text-gray-900">
             {restaurantInfo?.name}
@@ -48,10 +72,9 @@ const RestaurantMenu = () => {
         </div>
         <div className="flex flex-col items-center border border-gray-200 hover:border-gray-300 rounded justify-evenly p-2 cursor-pointer">
           <div className="flex items-center gap-1 pb-2 border-b w-full justify-center">
-            <img className="h-5" src="/images/rating.png" />
+            <img className="h-5" src="/images/rating.png" alt="Rating" />
             <span className="font-bold">{restaurantInfo?.avgRating}</span>
           </div>
-
           <span className="text-xs text-gray-500 font-medium">
             {restaurantInfo?.totalRatingsString}
           </span>

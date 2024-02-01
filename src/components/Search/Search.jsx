@@ -32,6 +32,9 @@ const Search = () => {
       clearTimeout(timer);
     };
   }, [searchText]);
+  useEffect(() => {
+    scrollTo(0, 0);
+  }, [searchData]);
 
   const fetchData = async () => {
     try {

@@ -11,8 +11,6 @@ const RestaurantMenuCard = ({ data }) => {
   const isBestseller = data?.isBestseller;
   const dispatch = useDispatch();
   const cartItem = useSelector((store) => store.cart.items);
-  if (!data) return;
-  const price = data?.price ? data?.price : data?.defaultPrice;
 
   const handleClick = () => {
     if (cartItem[data?.id] === undefined) {
@@ -28,11 +26,9 @@ const RestaurantMenuCard = ({ data }) => {
       setItemCount(cartItem[data.id].count);
     }
   }, [cartItem, data, setItemCount]);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   if (!data) return;
+  const price = data?.price || data?.defaultPrice;
   return (
     <div className="flex justify-between pb-5 md:pb-10 border-b-2 p-2 my-3">
       <div>
