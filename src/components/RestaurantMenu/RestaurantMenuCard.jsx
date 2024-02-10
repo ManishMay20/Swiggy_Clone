@@ -7,6 +7,7 @@ import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 
 const RestaurantMenuCard = ({ data }) => {
   const [itemCount, setItemCount] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
   const foodType = data?.itemAttribute?.vegClassifier || data?.isVeg;
   const isBestseller = data?.isBestseller;
   const dispatch = useDispatch();
@@ -59,6 +60,8 @@ const RestaurantMenuCard = ({ data }) => {
             className="w-full h-full rounded-lg object-cover"
             src={IMG_URL + data?.imageId}
             alt="items_image"
+            style={{ display: isLoaded ? "block" : "none" }}
+            onLoad={() => setIsLoaded(true)}
           />
         ) : (
           <div

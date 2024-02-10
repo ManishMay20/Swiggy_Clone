@@ -23,24 +23,24 @@ const RestaurantCard = ({ restaurant }) => {
 
   return (
     <div className="cursor-pointer transition-transform duration-300 transform hover:scale-95 p-2">
-      <div>
+      <div className=" ">
         {!isLoaded && (
           <div
-            className="aspect-video object-cover rounded-lg"
+            className="aspect-video object-cover rounded-lg "
             style={{ backgroundColor: "#f0f0f0" }}
           ></div>
         )}
         <img
           className="aspect-video object-cover rounded-lg"
-          src={`https://media-assets.swiggy.com/swiggy/image/upload/${cloudinaryImageId}`}
+          src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
           onLoad={handleImageLoaded}
           alt={name}
           style={{ display: isLoaded ? "block" : "none" }}
         />
       </div>
-      <div className="p-2 relative">
+      <div className="p-2 relative ">
         {aggregatedDiscountInfoV3?.header && (
-          <p className="absolute text-white font-semibold md:font-extrabold text-base md:text-xl bg-gradient-to-t pl-3 from-black p-1 w-full z-10 -top-8 -left-0">
+          <p className="absolute rounded-lg text-white font-semibold md:font-extrabold text-base md:text-xl bg-gradient-to-t pl-3 from-black p-1 w-full z-10 -top-8 -left-0">
             {aggregatedDiscountInfoV3.header}
             {aggregatedDiscountInfoV3.subHeader}
           </p>
@@ -48,15 +48,15 @@ const RestaurantCard = ({ restaurant }) => {
         <p className="font-semibold text-base md:text-lg leading-6 truncate text-gray-800">
           {name}
         </p>
-        <div className="font-semibold flex items-center gap-1 text-gray-700 text-sm md:text-lg">
+        <div className="font-semibold flex items-center gap-1 text-gray-700 text-sm md:text-base">
           <img className="h-4 sm:h-5" src="/images/rating.png" alt="Rating" />
           <h3>{avgRating}</h3>
           <p> . {sla?.slaString}</p>
         </div>
-        <p className="text-gray-500 truncate text-sm md:text-lg">
+        <p className="text-gray-500 truncate text-sm md:text-base mt-1">
           {cuisines.join(", ")}
         </p>
-        <p className="text-gray-500 text-sm md:text-lg">{areaName}</p>
+        <p className="text-gray-500 text-sm md:text-base">{areaName}</p>
       </div>
     </div>
   );
