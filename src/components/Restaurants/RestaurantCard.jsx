@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const RestaurantCard = ({ restaurant }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const handleImageLoaded = () => {
+    console.log("called");
+    setIsLoaded(true);
+  };
+
   if (!restaurant?.info) {
     return <div className="bg-gray-200 p-4 rounded-lg">Data not available</div>;
   }
@@ -18,14 +24,18 @@ const RestaurantCard = ({ restaurant }) => {
   return (
     <div className="cursor-pointer transition-transform duration-300 transform hover:scale-95 p-2">
       <div>
+        {!isLoaded && (
+          <div
+            className="aspect-video object-cover rounded-lg"
+            style={{ backgroundColor: "#f0f0f0" }}
+          ></div>
+        )}
         <img
           className="aspect-video object-cover rounded-lg"
-          src={
-            cloudinaryImageId
-              ? `https://media-assets.swiggy.com/swiggy/image/upload/${cloudinaryImageId}`
-              : "https://via.placeholder.com/350X200"
-          }
+          src={`https://media-assets.swiggy.com/swiggy/image/upload/${cloudinaryImageId}`}
+          onLoad={handleImageLoaded}
           alt={name}
+          style={{ display: isLoaded ? "block" : "none" }}
         />
       </div>
       <div className="p-2 relative">

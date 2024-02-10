@@ -54,12 +54,20 @@ const RestaurantMenuCard = ({ data }) => {
         </p>
       </div>
       <div className="min-h-28 max-h-28 min-w-32 max-w-32 relative pl-2">
-        {data?.imageId && (
+        {data?.imageId ? (
           <img
             className="w-full h-full rounded-lg object-cover"
             src={IMG_URL + data?.imageId}
             alt="items_image"
           />
+        ) : (
+          <div
+            className="w-full h-full  text-center rounded-lg object-cover text-sm text-gray-400"
+            style={{ backgroundColor: "#f0f0f0" }}
+          >
+            {" "}
+            image not available{" "}
+          </div>
         )}
         <button className="bg-white text-xs font-bold w-4/5 py-2 rounded shadow-sm hover:shadow-lg absolute text-green-400 cursor-pointer border -bottom-2 left-1/2 transform -translate-x-1/2">
           {itemCount == 0 ? (
