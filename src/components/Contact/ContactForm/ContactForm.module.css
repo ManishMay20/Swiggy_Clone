@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  gap: 10;
+  margin: auto;
+  margin-top: 40px;
+}
+.top_btn {
+  display: flex;
+  gap: 32px;
+}
+.contact_form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.contact_form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+}
+.form_control {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  border: 1px solid black;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.form_control input {
+  height: 50px;
+  border-radius: 5px;
+  padding: 12px 10px;
+  font-size: 14px;
+  background-color: white;
+}
+.form_control textarea {
+  padding: 8px;
+  border-radius: 5px;
+}
+.form_control label {
+  position: absolute;
+  top: -12px;
+  left: 10px;
+  z-index: 10;
+  background-color: white;
+  padding: 0 8px;
+  font-size: 14px;
+}
+.contact_image img {
+  object-fit: cover;
+}

@@ -23,9 +23,9 @@ const Header = () => {
 
   return (
     <div className="flex justify-between sm:justify-around sticky top-0 bg-white z-50 p-4 shadow-lg">
-      <div className="w-4 sm:w-8">
+      <div className="h-[23px] sm:h-[32px] lg:h-[46px]">
         <Link to="/" onClick={() => handleLinkClick("")}>
-          <img src="/swiggy.svg" alt="logo" />
+          <img className="w-full h-full" src="/petpooja.png" alt="logo" />
         </Link>
       </div>
 
