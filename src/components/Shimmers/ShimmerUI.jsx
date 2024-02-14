@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import BannerShimmer from "./BannerShimmer";
 import ShimmerCard from "./ShimmerCard";
 
 const ShimmerUI = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className=" w-full m-auto mt-6 ">
       <div className="flex overflow-x-hidden gap-5 my-6">

@@ -3,7 +3,6 @@ import { IMG_URL } from "../../constans";
 import { useDispatch, useSelector } from "react-redux";
 import { addItems, incrementItemCount } from "../../ReduxStore/cartSlice";
 import AddItemsBtn from "../Buttons/AddItemsBtn";
-import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 
 const RestaurantMenuCard = ({ data }) => {
   const [itemCount, setItemCount] = useState(0);
@@ -72,9 +71,11 @@ const RestaurantMenuCard = ({ data }) => {
             image not available{" "}
           </div>
         )}
-        <button className="bg-white text-xs font-bold w-4/5 py-2 rounded shadow-sm hover:shadow-lg absolute text-green-400 cursor-pointer border -bottom-2 left-1/2 transform -translate-x-1/2">
+        <button className="bg-white text-xs font-bold w-4/5 rounded shadow-sm hover:shadow-lg absolute text-green-400 cursor-pointer border -bottom-2 left-1/2 transform -translate-x-[46%]">
           {itemCount == 0 ? (
-            <div onClick={handleClick}>ADD</div>
+            <div onClick={handleClick} className="w-full h-full py-2">
+              ADD
+            </div>
           ) : (
             <AddItemsBtn
               itemCount={itemCount}

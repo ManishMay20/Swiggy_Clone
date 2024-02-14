@@ -3,7 +3,6 @@ import React, { useState } from "react";
 const RestaurantCard = ({ restaurant }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const handleImageLoaded = () => {
-    console.log("called");
     setIsLoaded(true);
   };
 

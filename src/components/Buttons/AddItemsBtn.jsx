@@ -28,7 +28,7 @@ const AddItemsBtn = ({ itemCount, setItemCount, data }) => {
   };
 
   return (
-    <div className="flex justify-between text-lg leading-none ">
+    <div className="flex justify-between text-lg leading-none py-2 ">
       <div
         onClick={decrement}
         className="flex justify-center items-center w-1/3  "
