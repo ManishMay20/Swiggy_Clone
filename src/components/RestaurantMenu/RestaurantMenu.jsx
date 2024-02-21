@@ -35,12 +35,18 @@ const RestaurantMenu = () => {
   }
   let restaurantInfo;
   let restaurantCategories;
-  let offers =
-    menuData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
+  let offers;
   {
     for (let i = 0; i < menuData.data.cards.length; i++) {
       if (menuData?.data?.cards[i]?.card?.card?.info) {
-        restaurantInfo = menuData?.data?.cards[0]?.card?.card?.info;
+        restaurantInfo = menuData?.data?.cards[i]?.card?.card?.info;
+      } else if (
+        menuData?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle
+          ?.offers
+      ) {
+        offers =
+          menuData?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle
+            ?.offers;
       } else if (
         menuData?.data?.cards[i]?.groupedCard?.cardGroupMap?.REGULAR?.cards
       ) {
