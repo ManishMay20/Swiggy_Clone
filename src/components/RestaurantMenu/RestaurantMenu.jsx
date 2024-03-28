@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import RestaurantMenuCategory from "./RestaurantMenuCategory";
 import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 import { MENU_API_URL } from "../../constans";
 import OfferCard from "./OfferCard";
+import { LocationContext } from "../../App";
 
 const RestaurantMenu = () => {
   const [menuData, setMenuData] = useState(null);
+  const { location, setLocation } = useContext(LocationContext);
   const { id } = useParams();
 
   useEffect(() => {
     const fetchRestaurantMenu = async () => {
       try {
-        const response = await fetch(MENU_API_URL + id);
+        const response = await fetch(
+          `${MENU_API_URL}${id}&lat=${location.latitude}&lng=${location.longitude}`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch menu data");
         }
@@ -24,7 +28,7 @@ const RestaurantMenu = () => {
     };
 
     fetchRestaurantMenu();
-  }, [id]);
+  }, [id, location]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

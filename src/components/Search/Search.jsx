@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SearchCard from "./SearchCard";
 import { FiSearch } from "react-icons/fi";
 import PopularCuisines from "./PopularCuisines";
@@ -8,11 +8,13 @@ import SearchRes from "./SearchRes";
 import { SEARCH_SUGGESTIONS_API_URL } from "../../constans";
 import { useDispatch, useSelector } from "react-redux";
 import { cacheResults } from "../../ReduxStore/searchSlice";
+import { LocationContext } from "../../App";
 
 const Search = () => {
   const [searchText, setSearchText] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [searchParams] = useSearchParams();
+  const { location, setLocation } = useContext(LocationContext);
   let query = searchParams.get("query");
   const [showResDetail, setShowResDetail] = useState(false);
 
@@ -38,7 +40,9 @@ const Search = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(SEARCH_SUGGESTIONS_API_URL + searchText);
+      const response = await fetch(
+        `${SEARCH_SUGGESTIONS_API_URL}${searchText}&lat=${location?.latitude}&lng=${location?.longitude}`
+      );
       const json = await response.json();
       setSearchData(json?.data?.suggestions);
       // caching

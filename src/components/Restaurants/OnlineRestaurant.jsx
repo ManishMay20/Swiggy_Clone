@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const OnlineRestaurant = () => {
+  const title = useSelector((store) => store.restaurants.onlineResTitle);
   const restaurants = useSelector(
     (store) => store.restaurants.onlineRestaurants
   );
@@ -15,7 +16,7 @@ const OnlineRestaurant = () => {
   return (
     <div className="py-2 sm:py-4">
       <h1 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4">
-        Restaurants with online food delivery in Indore
+        {title}
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
         {restaurants[0].map((restaurant) => (

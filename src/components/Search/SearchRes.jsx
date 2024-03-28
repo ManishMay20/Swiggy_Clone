@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import SearchResCard from "./SearchResCard";
 import SearchDish from "./SearchDish";
 import { SEARCH_API_URL } from "../../constans";
 import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
+import { LocationContext } from "../../App";
 
 const SearchRes = () => {
   const [searchParams] = useSearchParams();
   const [resInfo, setResInfo] = useState([]);
   const [dishInfo, setDishInfo] = useState([]);
+  const { location, setLocation } = useContext(LocationContext);
 
   let query = searchParams.get("query");
   let selectedPLTab = searchParams.get("selectedPLTab");
@@ -24,10 +26,12 @@ const SearchRes = () => {
   const fetchData = async () => {
     let response;
     if (selectedPLTab === "DISH") {
-      response = await fetch(SEARCH_API_URL + query + "&selectedPLTab=DISH");
+      response = await fetch(
+        `${SEARCH_API_URL}${query}&lat=${location?.latitude}&lng=${location?.longitude}&selectedPLTab=DISH`
+      );
     } else {
       response = await fetch(
-        SEARCH_API_URL + query + "&selectedPLTab=RESTAURANT"
+        `${SEARCH_API_URL}${query}&lat=${location?.latitude}&lng=${location?.longitude}&selectedPLTab=RESTAURANT`
       );
     }
 

@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IMG_URL, SEARCH_LANDING_API_URL } from "../../constans";
 import { Link } from "react-router-dom";
+import { LocationContext } from "../../App";
 
 const extractCuisinesName = (url) => {
   const regex = /query=([a-zA-Z]+)/;
   const match = url.match(regex);
+
   return match && match[1];
 };
 
 const PopularCuisines = () => {
+  const { location, setLocation } = useContext(LocationContext);
   const [cuisines, setCuisines] = useState(null);
 
   useEffect(() => {
@@ -17,7 +20,9 @@ const PopularCuisines = () => {
 
   const fetchData = async () => {
     try {
-      const data = await fetch(SEARCH_LANDING_API_URL);
+      const data = await fetch(
+        `${SEARCH_LANDING_API_URL}lat=${location?.latitude}&lng=${location?.longitude}`
+      );
       if (!data.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -48,7 +53,12 @@ const PopularCuisines = () => {
             </div>
           </Link>
         ))}
-        {!cuisines && <p>No popular cuisines available</p>}
+        {!cuisines &&
+          Array(10)
+            .fill("")
+            .map((item, index) => (
+              <div className=" min-h-20 min-w-20 max-w-20  rounded-full bg-gray-200 animate-pulse "></div>
+            ))}
       </div>
     </div>
   );

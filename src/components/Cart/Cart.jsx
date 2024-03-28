@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import RestaurantMenuCard from "../RestaurantMenu/RestaurantMenuCard";
 import { clearCart } from "../../ReduxStore/cartSlice";
@@ -12,6 +12,8 @@ const Cart = () => {
   const handleClick = () => {
     dispatch(clearCart());
   };
+
+  window.scrollTo(0, 0);
 
   return (
     <div className="px-2 min-h-full min-w-full md:w-4/5 lg:2/3 m-auto mt-5 md:mt-10">

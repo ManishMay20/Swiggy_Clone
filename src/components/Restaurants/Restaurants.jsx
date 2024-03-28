@@ -6,6 +6,7 @@ import LeftRightArrowBtn from "../Buttons/LeftRightArrowBtn";
 
 const Restaurants = () => {
   const containerRef = useRef(null);
+  const title = useSelector((store) => store.restaurants.topResTitle);
 
   const restaurants = useSelector((store) => store.restaurants.topRestaurants);
 
@@ -18,7 +19,7 @@ const Restaurants = () => {
       <div className="flex justify-between items-center">
         {restaurants[0] && (
           <h1 className="text-lg sm:text-xl md:text-2xl font-semibold my-2 sm:my-4">
-            Top restaurant chains in Indore
+            {title}
           </h1>
         )}
         <LeftRightArrowBtn containerRef={containerRef} />

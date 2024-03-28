@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "../Shimmers/ShimmerUI";
 import { COLLECTION_API_URL } from "../../constans";
+import { LocationContext } from "../../App";
 
 const Collections = () => {
   const { id } = useParams();
+  const { location, setLocation } = useContext(LocationContext);
   const [collections, setCollections] = useState(null);
 
   const fetchData = async () => {
     try {
-      const response = await fetch(COLLECTION_API_URL + id);
+      const response = await fetch(
+        `${COLLECTION_API_URL}${id}&lat=${location.latitude}&lng=${location.longitude}`
+      );
       const json = await response.json();
       setCollections(json?.data?.cards);
     } catch (e) {
@@ -20,7 +24,7 @@ const Collections = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [location]);
 
   if (!collections) return <ShimmerUI />;
   const resInfo = collections[0]?.card?.card;

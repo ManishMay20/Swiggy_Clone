@@ -4,7 +4,7 @@ const OfferCard = ({ item }) => {
   const IMG_URL =
     "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_28,h_28/";
   return (
-    <div className="border p-2 min-w-52 max-w-52 text-gray-800 hover:border-2 cursor-pointer rounded-lg">
+    <div className="border p-2 min-w-52 max-w-52 text-gray-800 hover:border-gray-600 box-border cursor-pointer rounded-lg">
       <div className="flex">
         <img
           className="h-5 w-5 mr-2"
