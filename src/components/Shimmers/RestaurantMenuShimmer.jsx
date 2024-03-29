@@ -1,6 +1,7 @@
 import React from "react";
 
 const RestaurantMenuShimmer = () => {
+  window.scrollTo(0, 0);
   return (
     <div className=" md:w-4/5 lg:w-2/3 m-auto p-2 animate-pulse ">
       <div className="h-52 w-full my-6 bg-gray-200 animate-pulse "></div>

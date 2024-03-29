@@ -18,6 +18,12 @@ export const SEARCH_SUGGESTIONS_API_URL =
 export const SEARCH_LANDING_API_URL =
   "https://swiggy-api.netlify.app/.netlify/functions/api/api/landing?";
 
+export const LOCATION_API =
+  "https://swiggy-api.netlify.app/.netlify/functions/api/api/misc/address-recommend?";
+
+export const LOCATION_SUGGESTION_API =
+  "https://www.swiggy.com/dapi/misc/place-autocomplete?";
+
 // export const API_URL =
 //   "https://swiggy-api-00sh.onrender.com/api/restaurants?lat=22.7195687&lng=75.8577258&page_type=DESKTOP_WEB_LISTING";
 

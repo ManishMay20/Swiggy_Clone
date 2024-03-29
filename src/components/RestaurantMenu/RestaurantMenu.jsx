@@ -32,7 +32,7 @@ const RestaurantMenu = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [menuData]);
 
   if (!menuData) {
     return <RestaurantMenuShimmer />;

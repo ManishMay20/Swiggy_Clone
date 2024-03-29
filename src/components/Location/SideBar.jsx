@@ -5,6 +5,7 @@ import { BsPinMap } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 import { clearRestaurants } from "../../ReduxStore/restaurantsSlice";
 import { useDispatch } from "react-redux";
+import { LOCATION_API, LOCATION_SUGGESTION_API } from "../../constans";
 
 const SideBar = ({ sideBar, setSideBar }) => {
   const [searchText, setSearchText] = useState("");
@@ -15,9 +16,7 @@ const SideBar = ({ sideBar, setSideBar }) => {
   const { city, setCity } = useContext(CityContext);
 
   const fetchData = async (query) => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/misc/place-autocomplete?input=" + searchText
-    );
+    const data = await fetch(`${LOCATION_SUGGESTION_API}input=${searchText}`);
     const json = await data.json();
     setLocationData(json?.data);
   };
@@ -27,9 +26,7 @@ const SideBar = ({ sideBar, setSideBar }) => {
   };
 
   const fetchCity = async (place_id) => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/misc/address-recommend?place_id=" + place_id
-    );
+    const data = await fetch(`${LOCATION_API}place_id=${place_id}`);
     const json = await data.json();
     const loca = json?.data[0]?.geometry?.location;
     setLocation({ latitude: loca?.lat, longitude: loca?.lng });
@@ -50,9 +47,10 @@ const SideBar = ({ sideBar, setSideBar }) => {
     });
     fetchCurrentCity(latitude, longitude);
   };
+
   const fetchCurrentCity = async (latitude, longitude) => {
     const data = await fetch(
-      `https://www.swiggy.com/dapi/misc/address-recommend?latlng=${latitude}%2C${longitude}`
+      `${LOCATION_API}latlng=${latitude}%2C${longitude}`
     );
     const json = await data.json();
     setCity(json?.data[0]?.formatted_address);
