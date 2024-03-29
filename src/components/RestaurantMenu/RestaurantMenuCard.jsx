@@ -46,7 +46,7 @@ const RestaurantMenuCard = ({ data }) => {
             </div>
           )}
         </div>
-        <h2 className="font-medium text-gray-700 text-sm sm:text-base mt-2">
+        <h2 className="font-medium text-gray-700  text-sm sm:text-base mt-3">
           {data?.name}
         </h2>
         <p className="font-medium text-gray-700 text-sm sm:text-base">

@@ -3,8 +3,10 @@ import { Link, useSearchParams } from "react-router-dom";
 import SearchResCard from "./SearchResCard";
 import SearchDish from "./SearchDish";
 import { SEARCH_API_URL } from "../../constans";
-import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 import { LocationContext } from "../../App";
+import SearchResShimmer from "../Shimmers/SearchResShimmer";
+import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
+import SearchDishShimmer from "../Shimmers/SearchDishShimmer";
 
 const SearchRes = () => {
   const [searchParams] = useSearchParams();
@@ -47,7 +49,11 @@ const SearchRes = () => {
   };
 
   if ((!resInfo || !resInfo.length) && (!dishInfo || !dishInfo.length)) {
-    return <RestaurantMenuShimmer />;
+    return selectedPLTab === "DISH" ? (
+      <SearchDishShimmer />
+    ) : (
+      <SearchResShimmer />
+    );
   }
 
   return selectedPLTab === "DISH" ? (

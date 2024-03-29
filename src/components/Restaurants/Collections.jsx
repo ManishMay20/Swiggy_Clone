@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
-import ShimmerUI from "../Shimmers/ShimmerUI";
 import { COLLECTION_API_URL } from "../../constans";
 import { LocationContext } from "../../App";
+import CollectionShimmer from "../Shimmers/CollectionShimmer";
 
 const Collections = () => {
   const { id } = useParams();
@@ -26,7 +26,7 @@ const Collections = () => {
     fetchData();
   }, [location]);
 
-  if (!collections) return <ShimmerUI />;
+  if (!collections) return <CollectionShimmer />;
   const resInfo = collections[0]?.card?.card;
 
   return (

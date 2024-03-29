@@ -3,7 +3,7 @@ import SearchDishCard from "./SearchDishCard";
 import RestaurantMenuShimmer from "../Shimmers/RestaurantMenuShimmer";
 
 const SearchDish = ({ dishInfo }) => {
-  if (!dishInfo) return <RestaurantMenuShimmer />;
+  if (!dishInfo) return;
   return (
     <div className="flex flex-wrap bg-gray-300 w-full gap-8 pt-6 justify-center rounded-lg">
       {dishInfo?.map((cards, i) => (

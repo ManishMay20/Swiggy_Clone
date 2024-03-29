@@ -39,10 +39,10 @@ const PopularCuisines = () => {
     <div>
       <h1 className="text-xl font-bold text-gray-700 my-3">Popular Cuisines</h1>
       <div className="flex gap-3 overflow-hidden">
-        {cuisines?.map((items) => (
+        {cuisines?.map((items, index) => (
           <Link
             to={`/search?query=${extractCuisinesName(items?.entityId)}`}
-            key={items?.id}
+            key={index}
           >
             <div className="min-h-20 min-w-20 max-w-20">
               <img
@@ -53,12 +53,17 @@ const PopularCuisines = () => {
             </div>
           </Link>
         ))}
-        {!cuisines &&
-          Array(10)
-            .fill("")
-            .map((item, index) => (
-              <div className=" min-h-20 min-w-20 max-w-20  rounded-full bg-gray-200 animate-pulse "></div>
-            ))}
+        <div className="bg-gray-50 flex overflow-hidden gap-3 p-3  border border-[#d3d5df] w-full shadow-sm">
+          {!cuisines &&
+            Array(10)
+              .fill("")
+              .map((item, index) => (
+                <div
+                  key={index}
+                  className=" min-h-20 min-w-20 max-w-20  rounded-full bg-gray-200 animate "
+                ></div>
+              ))}
+        </div>
       </div>
     </div>
   );
